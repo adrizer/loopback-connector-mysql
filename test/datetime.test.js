@@ -99,7 +99,7 @@ describe('MySQL datetime handling', function() {
       return Person.findById(inst.id);
     }).then(function(inst) {
       inst.should.not.eql(null);
-      const lastLogon = new Date(inst.lastLogon);
+      const lastLogon = new Date(inst.lastLogon.replace(/z$/i, '') + 'Z');
       lastLogon.toJSON().should.eql(d.toJSON());
       return;
     });
