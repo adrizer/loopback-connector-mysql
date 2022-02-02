@@ -5,6 +5,8 @@
 
 'use strict';
 
+require('dotenv').config();
+
 module.exports = require('should');
 const juggler = require('loopback-datasource-juggler');
 let DataSource = juggler.DataSource;
@@ -18,7 +20,7 @@ global.getConfig = function(options) {
     username: process.env.MYSQL_USER || config.username || 'root',
     password: process.env.MYSQL_PASSWORD || config.password || 'password',
     createDatabase: true,
-    timezone: 'UTC', // this must be UTC as the datetime tests expect it to be
+    timezone: 'Z', // this must be UTC as the datetime tests expect it to be
   };
 
   if (options) {

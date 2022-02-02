@@ -502,7 +502,7 @@ describe('migrations', function() {
     query('INSERT INTO `DateData` ' +
       '(`dateTime`, `timestamp`) ' +
       'VALUES("0000-00-00 00:00:00", "0000-00-00 00:00:00") ', function(err) {
-      const errMsg = 'ER_TRUNCATED_WRONG_VALUE: Incorrect datetime value: ' +
+      const errMsg = 'Incorrect datetime value: ' +
           '\'0000-00-00 00:00:00\' for column \'dateTime\' at row 1';
       assert(err);
       assert.equal(err.message, errMsg);
@@ -518,7 +518,7 @@ describe('migrations', function() {
     query('INSERT INTO `DateData` ' +
       '(`dateTime`, `timestamp`) ' +
       'VALUES("1000-01-01 00:00:00", "0000-00-00 00:00:00") ', function(err) {
-      const errMsg = 'ER_TRUNCATED_WRONG_VALUE: Incorrect datetime value: ' +
+      const errMsg = 'Incorrect datetime value: ' +
             '\'0000-00-00 00:00:00\' for column \'timestamp\' at row 1';
       assert(err);
       assert.equal(err.message, errMsg);

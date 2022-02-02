@@ -5,6 +5,8 @@
 
 'use strict';
 
+require('dotenv').config();
+
 if (!process.env.CI) {
   return console.log('Not seeding DB with test db');
 }

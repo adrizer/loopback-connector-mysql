@@ -161,7 +161,7 @@ describe('MySQL specific datatypes', function() {
     // Reference: http://dev.mysql.com/doc/refman/5.7/en/constraint-enum.html
     EnumModel.create({animal: 'horse', condition: 'sleepy', mood: 'happy'}, function(err, obj) {
       assert.ok(err);
-      assert.equal(err.code, 'WARN_DATA_TRUNCATED');
+      assert.equal(err.code, 'ER_WARN_DATA_TRUNCATED');
       assert.equal(err.errno, 1265);
       done();
     });

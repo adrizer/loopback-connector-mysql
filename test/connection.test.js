@@ -19,8 +19,7 @@ describe('connections', function() {
 
     config = global.getConfig();
 
-    odb = global.getDataSource({collation: 'utf8_general_ci',
-      createDatabase: true});
+    odb = global.getDataSource({collation: 'utf8_general_ci'});
     db = odb;
   });
 
@@ -148,8 +147,7 @@ function charsetTest(test_set, test_collo, test_set_str, test_set_collo, done) {
   query('DROP DATABASE IF EXISTS ' + odb.settings.database, function(err) {
     assert.ok(!err);
     odb.disconnect(function() {
-      db = global.getDataSource({collation: test_set_collo,
-        createDatabase: true});
+      db = global.getDataSource({collation: test_set_collo});
       DummyModel = db.define('DummyModel', {string: String});
       db.automigrate(function() {
         const q = 'SELECT DEFAULT_COLLATION_NAME' +
