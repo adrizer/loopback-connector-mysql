@@ -4,33 +4,44 @@ references:
   defaults: &defaults
     working_directory: ~/app
     docker:
-      - image: adrizer/circleci-node-aws:12.13
-  yarn_install: &yarn_install
+      - image: cimg/node:14.19.0
+        environment:
+          MYSQL_DATABASE: lb_cnx_mysql_test
+          MYSQL_USER: user
+          MYSQL_ROOT_PASSWORD: password
+
+      - image: circleci/mysql:5.7
+        environment:
+          MYSQL_DATABASE: lb_cnx_mysql_test
+          MYSQL_USER: user
+          MYSQL_ROOT_PASSWORD: password
+
+  npm_install: &npm_install
     run:
       name: Install Dependencies
-      command: yarn install
-  restore_yarn_cache: &restore_yarn_cache
+      command: npm install
+  restore_npm_cache: &restore_npm_cache
     restore_cache:
-      name: Restore Yarn Package Cache
+      name: Restore NPM Package Cache
       keys:
-        - v12.13.0-yarn-packages-{{ checksum "yarn.lock" }}
-        - v12.13.0-yarn-packages-
-  save_yarn_cache: &save_yarn_cache
+        - v14.19.0-npm-packages-{{ checksum "package-lock.json" }}
+        - v14.19.0-npm-packages-
+  save_npm_cache: &save_npm_cache
     save_cache:
-      name: Save Yarn Package Cache
-      key: v12.13.0-yarn-packages-{{ checksum "yarn.lock" }}
+      name: Save NPM Package Cache
+      key: v14.19.0-npm-packages-{{ checksum "package-lock.json" }}
       paths:
-        - ~/.cache/yarn
+        - ~/.cache/npm
 
 jobs:
   build:
     <<: *defaults
     steps:
       - checkout
-      - *restore_yarn_cache
-      - *yarn_install
-      - *save_yarn_cache
-      - run: yarn test
+      - *restore_npm_cache
+      - *npm_install
+      - *save_npm_cache
+      - run: npm test
 
 workflows:
   build-test:

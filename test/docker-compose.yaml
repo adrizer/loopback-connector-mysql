@@ -1,0 +1,23 @@
+---
+# This is the docker file to bring up a database for development purposes.
+# We use RDS for production
+version: '2'
+services:
+  mysql:
+    container_name: loopback-connector-mysql-test
+    restart: always
+    image: circleci/mysql:5.7
+    # note the high max_connections value, for testing the db connector
+    # this can be tuned down if not running unit tests on the connector
+    command: --character-set-server=utf8 --collation-server=utf8_general_ci --max_connections=1024
+    environment:
+      MYSQL_DATABASE: 'lb_cnx_mysql_test'
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_USER: 'user'
+      MYSQL_PASS: 'password'
+    volumes:
+      - nucleus-data:/var/lib/mysql
+    ports:
+      - "3307:3306"
+volumes:
+  nucleus-data:
