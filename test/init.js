@@ -17,7 +17,7 @@ global.getConfig = function(options) {
     host: process.env.MYSQL_HOST || config.host || 'localhost',
     port: process.env.MYSQL_PORT || config.port || 3306,
     database: process.env.MYSQL_DATABASE || 'lb_cnx_mysql_test',
-    username: process.env.MYSQL_USER || config.username || 'user',
+    username: process.env.MYSQL_USER || config.username || 'root',
     password: process.env.MYSQL_PASSWORD || config.password || 'password',
     createDatabase: true,
     timezone: 'Z', // this must be UTC as the datetime tests expect it to be

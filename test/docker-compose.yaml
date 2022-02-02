@@ -13,7 +13,7 @@ services:
     environment:
       MYSQL_DATABASE: 'lb_cnx_mysql_test'
       MYSQL_ROOT_PASSWORD: 'password'
-      MYSQL_USER: 'user'
+      MYSQL_USER: 'root'
       MYSQL_PASS: 'password'
     volumes:
       - nucleus-data:/var/lib/mysql
