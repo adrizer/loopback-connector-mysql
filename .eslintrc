@@ -8,6 +8,7 @@
      }],
      "camelcase": 0,
      "one-var": "off",
-     "no-unused-expressions": "off"
+    "no-unused-expressions": "off",
+    "space-before-function-paren": "off"
    }
  }
